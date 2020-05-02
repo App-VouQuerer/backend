@@ -1,0 +1,28 @@
+{
+  "name": "vouquerer",
+  "version": "1.0.0",
+  "description": "Backend with NodeJS for sample app project",
+  "main": "index.js",
+  "repository": "https://github.com/App-VouQuerer/backend.git",
+  "author": "Walleks Miranda <walleksmiranda@gmail.com>",
+  "scripts": {
+    "start": "babel-node ./src/server.js"
+  },
+  "contributors": [
+    "Bruno Lombardi <djfrizer1@gmail.com> (https://brunolombardi.me)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "consign": "^0.1.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6"
+  }
+}

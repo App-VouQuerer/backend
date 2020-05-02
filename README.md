@@ -4,7 +4,7 @@ Aplicação Mobile para fazer pedido de comida, focada em cidades pequenas e peq
 
 ## Tecnologias
 
-## Autor
+## Autores
 
 | ![Walleks Miranda](https://avatars2.githubusercontent.com/u/56007426?s=150&u=6b9d0f4c292d102bd0cd971677feafd4295a610b)|
 |:---------------------:|
