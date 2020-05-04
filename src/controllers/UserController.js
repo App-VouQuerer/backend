@@ -19,6 +19,13 @@ class UserController {
 
       return res.status(201).json({ user })
     } catch (error) {
+      if (error.code === '23505') {
+        next({
+          message: 'O email que você enviou já está em uso.',
+          status: 409,
+          timestamp: new Date(),
+        })
+      }
       next(error)
     }
   }
