@@ -8,8 +8,7 @@
   "lint-staged": {
     "*.js": [
       "yarn run lint",
-      "yarn run format",
-      "git add"
+      "yarn run format"
     ]
   },
   "husky": {
@@ -20,7 +19,7 @@
   "scripts": {
     "start": "babel-node ./src/server.js",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "format": "npx prettier --write \"src/**/*.js\" \"__test__/**/*.js\"",
+    "format": "npx prettier --write \"src/**/*.js\" \"__tests__/**/*.js\"",
     "lint": "npx eslint . --fix",
     "migrate:rollback": "npx knex migrate:rollback",
     "migrate:reset": "yarn migrate:rollback && npx knex migrate:latest",

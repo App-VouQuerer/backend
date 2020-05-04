@@ -1,9 +1,9 @@
-import knex from '../database';
+import knex from '../database'
 
 class UserController {
   async create(req, res, next) {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password } = req.body
 
       const [id] = await knex('users')
         .insert({
@@ -11,24 +11,24 @@ class UserController {
           email,
           password,
         })
-        .returning('id');
+        .returning('id')
 
       const [user] = await knex('users')
         .select('id', 'name', 'email', 'avatarUrl', 'phoneNumber')
-        .where('id', id);
+        .where('id', id)
 
-      return res.status(201).json({ user });
+      return res.status(201).json({ user })
     } catch (error) {
-      next(error);
+      next(error)
     }
   }
 
   async index(req, res) {
-    const users = await knex('users');
+    const users = await knex('users')
 
     res.json({
       users,
-    });
+    })
   }
 
   // async update(req, res) {}
@@ -38,4 +38,4 @@ class UserController {
   // async delete(req, res) {}
 }
 
-export default new UserController();
+export default new UserController()
