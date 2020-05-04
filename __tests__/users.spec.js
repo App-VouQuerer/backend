@@ -25,5 +25,19 @@ describe('User endpoints', () => {
           expect(user.password).toBeFalsy()
         })
     })
+
+    it('should not create an user with existing email', () => {
+      return request(app)
+        .post('/api/v1/users')
+        .send({
+          name: 'Test User',
+          email: 'test@email.com',
+          password: '123456',
+        })
+        .expect('Content-Type', /json/)
+        .then((response) => {
+          console.log(response.body)
+        })
+    })
   })
 })
