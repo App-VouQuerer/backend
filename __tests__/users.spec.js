@@ -1,8 +1,10 @@
+import knex from '~/database'
 import app from '~/app'
 import request from 'supertest'
 
 describe('User endpoints', () => {
   afterAll(async () => {
+    await knex('users').delete().where('email', 'djfrizer1@gmail.com')
     await new Promise((resolve) => setTimeout(() => resolve(), 500)) // avoid jest open handle error
   })
 
@@ -35,8 +37,9 @@ describe('User endpoints', () => {
           password: '123456',
         })
         .expect('Content-Type', /json/)
+        .expect(409)
         .then((response) => {
-          console.log(response.body)
+          expect(response.body).toHaveProperty('message')
         })
     })
   })

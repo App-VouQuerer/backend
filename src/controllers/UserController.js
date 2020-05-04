@@ -1,15 +1,18 @@
-import knex from '../database'
+import knex from '~/database'
+import bcrypt from 'bcryptjs'
 
 class UserController {
   async create(req, res, next) {
     try {
       const { name, email, password } = req.body
 
+      const hashPassword = await bcrypt.hash(password, 12)
+
       const [id] = await knex('users')
         .insert({
           name,
           email,
-          password,
+          password: hashPassword,
         })
         .returning('id')
 
