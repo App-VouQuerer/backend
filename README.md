@@ -1,8 +1,23 @@
-# Vou Querer
+# Vou Querer Backend
 
 Aplicação Mobile para fazer pedido de comida, focada em cidades pequenas e pequenas empresas.
 
+## Guia Rápido
+
+1. Faça o clone desse repositório, `git clone https://github.com/App-VouQuerer/backend`.
+2. Instale as dependências com `yarn install`.
+3. Crie um arquivo `.env` e configure-o de acordo com o arquivo [.env.example](.env.example).
+4. Execute as migrations com o comando `npx knex migrate:latest`.
+5. Rode o servidor com o comando `yarn dev`, faça alterações do código e divirta-se!
+
+## Migrations
+
+Para criar uma migration, use o comando `npx knex migrate:make <nome_da_migration>`. Leia a [documentação do Knex](http://knexjs.org/#Schema) para referência sobre como criar as migrations.
+
 ## Tecnologias
+
+– [Express](https://expressjs.com/)
+– [Knex](http://knexjs.org/)
 
 ## Autores
 
