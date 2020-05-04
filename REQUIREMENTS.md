@@ -2,28 +2,33 @@
 
 Usuário final do aplicativo, que realiza pedidos e faz pagamentos.
 
+
 ## Location
-  - ID (UUIDv4)
+  - ID
   - region*
   - city*
 
 ## User
   - ID (UUIDv4)
-  - name*
-  - email*
+  - IDPerson(id_person)
+  - Login*
   - password*
   - avatarUrl
-  - phoneNumber
+
+Tabela Relacionada Users e Clients 
+## Person
+  - ID
+  - Name*
+  - Email*
+  - PhoneNumber*
 
 Proprietário do restaurante.
 ## Client
   - ID
-  - cpf
-  - name
-  - email
-  - password
-  - avatarUrl
-  - phoneNumber
+  - IDPerson(id_person)
+  - CPF
+  - Password
+  - AvatarUrl
 
 Endereços de usuários, proprietários ou restaurantes.
 ## Address
@@ -61,9 +66,15 @@ Período de funcionamento dos restaurantes, incluindo dia, horário de abertura 
 Produtos, como sanduíches, pizzas ou outros alimentos, e bebidas que um restaurante oferece.
 ## Product
   - ID: UUIDv4
+  - IDCategory (id_category)
   - title: String
   - description: Text
   - photoUrl: String
   - price: Decimal -- Preço normal
   - discountPrice: Decimal -- Preço de desconto
   - hasDiscount: Boolean -- Está em desconto?
+
+Categorias dos produtos.
+## ProductCategory
+  - ID
+  - Name
