@@ -31,7 +31,18 @@ class UserController {
     })
   }
 
-  // async update(req, res) {}
+  async update(req, res, next) {
+    try {
+      const id = req.params.id
+      const { name, email } = req.body
+
+      const user = await knex('users').update({ name, email }).where('id', id)
+
+      return res.status(201).json({ user })
+    } catch (error) {
+      next(error)
+    }
+  }
 
   // async find(req, res) {}
 
