@@ -1,5 +1,6 @@
 # Entidades do banco de dados
 
+
 Qual a finalidade desta tabela?
 ## Location
   - ID
