@@ -1,12 +1,11 @@
 # Entidades do banco de dados
 
-Usuário final do aplicativo, que realiza pedidos e faz pagamentos.
-
 ## Location
   - ID (UUIDv4)
   - region*
   - city*
 
+Usuário final do aplicativo, que realiza pedidos e faz pagamentos.
 ## User
   - ID (UUIDv4)
   - name*
