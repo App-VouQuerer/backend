@@ -1,11 +1,5 @@
 # Entidades do banco de dados
 
-<<<<<<< HEAD
-Usuário final do aplicativo, que realiza pedidos e faz pagamentos.
-
-
-=======
->>>>>>> ce92447d0708364fc891114feb572102b0fdc57f
 ## Location
   - ID
   - region*
@@ -19,7 +13,7 @@ Usuário final do aplicativo, que realiza pedidos e faz pagamentos.
   - password*
   - avatarUrl
 
-Tabela Relacionada Users e Clients 
+Tabela Relacionada Users e Clients
 ## Person
   - ID
   - Name*
