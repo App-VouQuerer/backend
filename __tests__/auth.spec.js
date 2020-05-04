@@ -1,10 +1,12 @@
 import app from '~/app'
+import knex from '~/database'
 import request from 'supertest'
 import jwt from 'jsonwebtoken'
 
 describe('Authentication endpoints', () => {
   afterAll(async () => {
-    await new Promise((resolve) => setTimeout(() => resolve(), 500)) // avoid jest open handle error
+    // await new Promise((resolve) => setTimeout(() => resolve(), 500)) // avoid jest open handle error
+    await knex.destroy()
   })
 
   describe('POST /api/v1/auth/login', () => {

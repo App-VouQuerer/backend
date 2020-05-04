@@ -22,6 +22,7 @@ class UserController {
 
       return res.status(201).json({ user })
     } catch (error) {
+      // Erro do PostgreSQL para unique constraint fail
       if (error.code === '23505') {
         next({
           message: 'O email que você enviou já está em uso.',
@@ -46,10 +47,34 @@ class UserController {
       const id = req.params.id
       const { name, email } = req.body
 
-      const user = await knex('users').update({ name, email }).where('id', id)
+      const [returnId] = await knex('users')
+        .update({ name, email })
+        .where('id', id)
+        .returning('id')
 
-      return res.status(201).json({ user })
+      if (!returnId) {
+        const error = {
+          message: 'Um usuário com este ID não foi encontrado.',
+          status: 404,
+          timestamp: new Date(),
+        }
+        throw error
+      }
+
+      const [user] = await knex('users')
+        .select('id', 'name', 'email', 'avatarUrl', 'phoneNumber')
+        .where('id', id)
+
+      return res.status(200).json({ user })
     } catch (error) {
+      // Erro do PostgreSQL para UUID no formato inválido
+      if (error.code === '22P02') {
+        next({
+          message: 'Este ID é inválido.',
+          status: 400,
+          timestamp: new Date(),
+        })
+      }
       next(error)
     }
   }
