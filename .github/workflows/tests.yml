@@ -3,8 +3,7 @@ name: NodeJS Testing
 on:
   push:
     branches:
-      - development
-      - feature/github_actions
+      - develop
   pull_request:
     branches:
       - master
