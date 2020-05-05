@@ -34,12 +34,43 @@ class UserController {
     }
   }
 
-  async index(req, res) {
-    const users = await knex('users')
+  async index(req, res, next) {
+    const { page = 1, limit = 10, order, orderBy, name, email } = req.query
 
-    res.json({
-      users,
-    })
+    try {
+      const query = knex('users')
+        .select('id', 'name', 'email', 'avatarUrl', 'phoneNumber')
+        .limit(limit)
+        .offset((page - 1) * limit)
+
+      if (order && orderBy) {
+        query.orderBy(orderBy, order)
+      }
+
+      const countQuery = knex('users').count()
+
+      if (name) {
+        query.where('name', 'ilike', `%${name}%`)
+        countQuery.where('name', 'ilike', `%${name}%`)
+      }
+
+      if (email) {
+        query.where('email', 'ilike', `%${email}%`)
+        countQuery.where('email', 'ilike', `%${email}%`)
+      }
+
+      const [count] = await countQuery
+      res.header('x-total-count', count['count'])
+
+      const results = await query
+      res.json({
+        page: Number(page),
+        limit: Number(limit),
+        data: results,
+      })
+    } catch (error) {
+      next(error)
+    }
   }
 
   async update(req, res, next) {
@@ -79,7 +110,35 @@ class UserController {
     }
   }
 
-  // async find(req, res) {}
+  async find(req, res, next) {
+    try {
+      const id = req.params.id
+
+      const [user] = await knex('users')
+        .select('id', 'name', 'email', 'avatarUrl', 'phoneNumber')
+        .where('id', id)
+
+      if (!user) {
+        const error = {
+          message: 'Um usuário com este ID não foi encontrado.',
+          status: 404,
+          timestamp: new Date(),
+        }
+        throw error
+      }
+
+      return res.status(200).json({ user })
+    } catch (error) {
+      if (error.code === '22P02') {
+        next({
+          message: 'Este ID é inválido.',
+          status: 400,
+          timestamp: new Date(),
+        })
+      }
+      next(error)
+    }
+  }
 
   // async delete(req, res) {}
 }
