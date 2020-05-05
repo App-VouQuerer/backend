@@ -33,7 +33,6 @@ export default async (req, res, next) => {
 
     const [user] = await knex('users')
       .select('id', 'email', 'name', 'avatarUrl')
-      .from('users')
       .where('email', payload.email)
 
     if (!user) {

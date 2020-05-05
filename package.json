@@ -26,7 +26,7 @@
     "migrate:latest": "npx knex migrate:latest",
     "seed": "npx knex seed:run",
     "migrate:reset": "yarn migrate:rollback && yarn migrate:latest && yarn seed",
-    "test": "cross-env NODE_ENV=test jest --bail --detectOpenHandles",
+    "test": "cross-env NODE_ENV=test jest --bail --detectOpenHandles .",
     "pretest": "cross-env NODE_ENV=test yarn migrate:reset",
     "test:watch": "jest --watch"
   },

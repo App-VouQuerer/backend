@@ -7,6 +7,12 @@ Qual a finalidade desta tabela?
   - region*
   - city*
 
+Cargo dos usuários.
+## Roles
+ - name: String
+ - title: String
+ - default: Boolean
+
 Usuário final do aplicativo, que realiza pedidos e faz pagamentos.
 ## User
   - ID (UUIDv4)
