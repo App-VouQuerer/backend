@@ -242,5 +242,23 @@ describe('User endpoints', () => {
           expect(data.length).toBeGreaterThan(0)
         })
     })
+
+    it('should return paginated list with order', () => {
+      return request(app)
+        .get(`/api/v1/users?page=1&limit=20&order=asc&orderBy=name`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response) => {
+          expect(response.body).toHaveProperty('page')
+          expect(response.body).toHaveProperty('limit')
+          expect(response.body).toHaveProperty('data')
+          expect(response.headers).toHaveProperty('x-total-count')
+          const { page, limit, data } = response.body
+          expect(page).toBe(1)
+          expect(limit).toBe(20)
+          expect(Array.isArray(data)).toBe(true)
+          expect(data.length).toBeGreaterThan(0)
+        })
+    })
   })
 })
